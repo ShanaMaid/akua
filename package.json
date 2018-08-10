@@ -1,0 +1,31 @@
+{
+  "name": "akua",
+  "version": "0.0.1",
+  "description": "make if more elegant",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run build && node ./test/index.js",
+    "build": "tsc --declaration",
+    "lint": "tslint -p './tsconfig.json' './test/index.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShanaMaid/akua.git"
+  },
+  "keywords": [
+    "if",
+    "simple"
+  ],
+  "author": "ShanaMaid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShanaMaid/akua/issues"
+  },
+  "homepage": "https://github.com/ShanaMaid/akua#readme",
+  "dependencies": {
+    "typescript": "^3.0.1"
+  },
+  "devDependencies": {
+    "tslint": "^5.11.0"
+  }
+}
