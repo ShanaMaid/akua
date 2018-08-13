@@ -6,59 +6,73 @@ const getRandBoolean = () => {
 
 function testAkuaUnit() {
   const ifTree = new akua();
-  const a = getRandBoolean();
-  const b = getRandBoolean();
-  const c = getRandBoolean();
-  const d = getRandBoolean();
-  const e = getRandBoolean();
-  const f = getRandBoolean();
-  const g = getRandBoolean();
+  const conditionA = getRandBoolean();
+  const conditionB = getRandBoolean();
+  const conditionC = getRandBoolean();
+  const conditionD = getRandBoolean();
+  const conditionE = getRandBoolean();
+  const conditionF = getRandBoolean();
+  const conditionG = getRandBoolean();
 
   let normalIf = '';
-  if (a) {
+  if (conditionA) {
+    const tempA = 'tempA';
     normalIf += 'a';
-    if (b) {
+    if (conditionB) {
       normalIf += 'b';
-      if (c) {
+      normalIf += tempA;
+      if (conditionC) {
         normalIf += 'c';
-        if (d) {
+        if (conditionD) {
           normalIf += 'd';
-          if (e) {
+          if (conditionE) {
             normalIf += 'e';
           }
         }
       }
+    } else {
+      normalIf += '!b';
     }
 
-    if (f) {
+    if (conditionF) {
       normalIf += 'f';
-      if (g) {
+      if (conditionG) {
         normalIf += 'g';
       }
     }
+  } else {
+    normalIf += '!a';
   }
 
   let akuaIf = '';
   ifTree
-  .inject(a, 'a', () => {
+  .inject(conditionA, 'a', (obj) => {
+    obj.tempA = 'tempA';
     akuaIf += 'a';
   })
-  .inject(b, 'a->b', () => {
-    akuaIf += 'b';
+  .inject(!conditionA, '!a', (obj) => {
+    akuaIf += '!a';
   })
-  .inject(c, 'b->c', () => {
+  .inject(conditionB, 'a->b', (obj) => {
+    akuaIf += 'b';
+    akuaIf += obj.tempA;
+  })
+  .inject(!conditionB, 'a->!b', (obj) => {
+    akuaIf += '!b';
+  })
+  .inject(conditionC, 'b->c', () => {
     akuaIf += 'c';
   })
-  .inject(d, 'c->d', () => {
+  .inject(conditionD, 'c->d', () => {
     akuaIf += 'd';
   })
-  .inject(e, 'd->e', () => {
+  .inject(conditionE, 'd->e', () => {
     akuaIf += 'e';
   })
-  .inject(f, 'a->f', () => {
+  .inject(conditionF, 'a->f', () => {
     akuaIf += 'f';
   })
-  .inject(g, 'f->g', () => {
+  .inject(conditionG, 'f->g', () => {
     akuaIf += 'g';
   })
   .parse();
