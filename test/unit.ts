@@ -53,14 +53,14 @@ export const testAkuaUnit = () => {
     obj.tempA = 'tempA';
     akuaIf += 'a';
   })
-  .inject(!conditionA, '!a', (obj) => {
+  .inject(!conditionA, '!a', () => {
     akuaIf += '!a';
   })
   .inject(conditionB, 'a->b', (obj) => {
     akuaIf += 'b';
     akuaIf += obj.tempA;
   })
-  .inject(!conditionB, 'a->!b', (obj) => {
+  .inject(!conditionB, 'a->!b', () => {
     akuaIf += '!b';
   })
   .inject(conditionC, 'b->c', () => {
