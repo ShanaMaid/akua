@@ -1,6 +1,6 @@
 {
   "name": "akua",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "make if more elegant",
   "main": "lib/index",
   "module": "es6/index",
